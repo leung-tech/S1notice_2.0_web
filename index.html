@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
-    <title>互動學啟事格式 · 中一實用文（日期靠左）</title>
+    <title>互動學啟事 · 加深練習（7步挑戰）</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: #f7f4ec;
             font-family: 'Noto Sans TC', 'PingFang SC', 'Microsoft YaHei', 'Heiti TC', sans-serif;
@@ -23,38 +22,33 @@
             line-height: 1.5;
             color: #2e241b;
         }
-
         .container {
-            max-width: 750px;
+            max-width: 780px;
             width: 100%;
             background: #fffef9;
             border-radius: 32px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.05);
             padding: 28px 24px 32px;
             border: 1px solid #ddd4c0;
             position: relative;
         }
-
         h1 {
             font-size: 2rem;
             font-weight: 700;
             text-align: center;
             color: #4b3a2b;
             margin-bottom: 6px;
-            letter-spacing: 0.04em;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-
         h1 span {
             background: #fae5c2;
             padding: 0 12px;
             border-radius: 40px;
             font-size: 1.4rem;
         }
-
         .subtitle {
             text-align: center;
             font-size: 1.2rem;
@@ -64,75 +58,67 @@
             border-bottom: 2px dashed #d9c9a8;
             padding-bottom: 12px;
         }
-
         .steps-nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
             margin-bottom: 28px;
             flex-wrap: wrap;
         }
-
         .step-dot {
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: #e7ddcf;
             color: #5e4a34;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 3px solid #cfbea1;
             transition: all 0.2s;
             cursor: default;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
-
         .step-dot.active {
             background: #f9c270;
             border-color: #b47d44;
             color: #2e241b;
             transform: scale(1.08);
-            box-shadow: 0 4px 10px rgba(180, 120, 60, 0.3);
+            box-shadow: 0 4px 10px rgba(180,120,60,0.3);
         }
-
         .step-dot.done {
             background: #a7c9a1;
             border-color: #4f7a4a;
             color: #1e3a1a;
             position: relative;
         }
-
         .step-dot.done::after {
             content: "✓";
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
             position: absolute;
-            top: -4px;
-            right: -4px;
+            top: -6px;
+            right: -6px;
             background: #fff;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #2d6a2d;
             border: 2px solid #4f7a4a;
         }
-
         .activity-box {
             background: #fffbf5;
             border: 2px solid #e0d3bb;
             border-radius: 28px;
             padding: 24px 20px;
             margin-bottom: 20px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
-            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
         }
-
         .instruction {
             font-size: 1.2rem;
             font-weight: 600;
@@ -146,11 +132,9 @@
             color: #3f2e1e;
             border-left: 8px solid #c49a6c;
         }
-
         .instruction .icon {
             font-size: 2rem;
         }
-
         .notice-template {
             background: #fefcf5;
             border: 2px dashed #bfb08b;
@@ -163,7 +147,6 @@
             margin-bottom: 20px;
             min-height: 280px;
         }
-
         .drop-zone {
             width: 90%;
             min-height: 58px;
@@ -181,20 +164,17 @@
             font-size: 1.1rem;
             background: #fefcf3;
         }
-
         .drop-zone.filled {
             border-style: solid;
             background: #f5f0e1;
             color: #2e241b;
             font-weight: 700;
         }
-
         .drop-zone.title-zone {
             font-size: 1.3rem;
             font-weight: 700;
             width: 60%;
         }
-
         .drop-zone.body-zone {
             min-height: 90px;
             text-align: left;
@@ -203,8 +183,6 @@
             white-space: pre-wrap;
             line-height: 1.6;
         }
-
-        /* 下款区域：署名在上靠右，日期在下靠左 */
         .signature-group {
             display: flex;
             flex-direction: column;
@@ -213,30 +191,22 @@
             gap: 8px;
             margin-top: 4px;
         }
-
-        .drop-zone.sign-zone,
-        .drop-zone.date-zone {
+        .drop-zone.sign-zone, .drop-zone.date-zone {
             width: 180px;
             min-height: 48px;
             font-size: 1rem;
         }
-
         .drop-zone.sign-zone {
             align-self: flex-end;
-            /* 署名靠右 */
         }
-
         .drop-zone.date-zone {
             align-self: flex-start;
-            /* 日期靠左 */
         }
-
         .drop-zone.highlight {
             border-color: #f0b34b;
             background: #fff6e5;
-            box-shadow: 0 0 0 4px rgba(240, 179, 75, 0.4);
+            box-shadow: 0 0 0 4px rgba(240,179,75,0.4);
         }
-
         .card-pool {
             display: flex;
             flex-wrap: wrap;
@@ -244,7 +214,6 @@
             justify-content: center;
             margin: 12px 0;
         }
-
         .draggable-card {
             background: #fff;
             border: 2px solid #c2b090;
@@ -255,19 +224,17 @@
             cursor: pointer;
             background: #fef9f2;
             transition: all 0.15s;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
             user-select: none;
             text-align: center;
             max-width: 240px;
         }
-
         .draggable-card.selected {
             border: 3px solid #e5942e;
             background: #fff2db;
             transform: scale(1.02);
-            box-shadow: 0 6px 14px rgba(220, 130, 20, 0.25);
+            box-shadow: 0 6px 14px rgba(220,130,20,0.25);
         }
-
         .draggable-card.placed {
             opacity: 0.6;
             pointer-events: none;
@@ -275,7 +242,6 @@
             border-color: #aaa;
             text-decoration: line-through;
         }
-
         .slot-row {
             display: flex;
             flex-wrap: wrap;
@@ -284,7 +250,6 @@
             justify-content: center;
             margin: 15px 0;
         }
-
         .slot {
             width: 70px;
             height: 70px;
@@ -300,17 +265,15 @@
             transition: 0.2s;
             cursor: pointer;
         }
-
         .slot.filled {
             background: #f5ebd7;
             border-style: solid;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #2e241b;
-            padding: 6px;
+            padding: 4px;
             text-align: center;
             word-break: break-word;
         }
-
         .feedback-message {
             font-size: 1.2rem;
             font-weight: 700;
@@ -320,19 +283,8 @@
             margin: 12px 0;
             transition: 0.2s;
         }
-
-        .feedback-message.success {
-            background: #daf1da;
-            color: #1e4a1e;
-            border: 2px solid #6da56d;
-        }
-
-        .feedback-message.error {
-            background: #ffe0e0;
-            color: #8b2a2a;
-            border: 2px solid #d98080;
-        }
-
+        .feedback-message.success { background: #daf1da; color: #1e4a1e; border: 2px solid #6da56d; }
+        .feedback-message.error { background: #ffe0e0; color: #8b2a2a; border: 2px solid #d98080; }
         .button-group {
             display: flex;
             gap: 12px;
@@ -340,7 +292,6 @@
             margin-top: 20px;
             flex-wrap: wrap;
         }
-
         .btn {
             background: #f3e1c0;
             border: 2px solid #b28b5c;
@@ -351,477 +302,482 @@
             color: #3d2b1a;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
             background: #f9eedb;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-
-        .btn:hover {
-            background: #f5dbb0;
-            border-color: #8b6a3e;
-        }
-
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .btn.primary {
-            background: #e0b07d;
-            border-color: #7b5836;
-            color: #2e1e0f;
-            font-weight: 700;
-        }
-
-        .radio-option {
+        .btn:hover { background: #f5dbb0; border-color: #8b6a3e; }
+        .btn:active { transform: translateY(2px); }
+        .btn:disabled { opacity: 0.5; pointer-events: none; }
+        .btn.primary { background: #e0b07d; border-color: #7b5836; color: #2e1e0f; }
+        .choice-grid {
             display: flex;
-            align-items: center;
-            gap: 14px;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        .choice-card {
             background: #fff;
-            border: 2px solid #d5c4a5;
-            border-radius: 20px;
-            padding: 14px 18px;
-            margin: 10px 0;
+            border: 3px solid #d5c4a5;
+            border-radius: 24px;
+            padding: 16px 20px;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.15s;
-            font-size: 1rem;
+            transition: 0.2s;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
         }
-
-        .radio-option input[type="radio"] {
-            transform: scale(1.8);
-            accent-color: #b87c4b;
-            margin-right: 8px;
+        .choice-card.selected-correct {
+            background: #c3e6b0;
+            border-color: #4f7a4a;
         }
-
+        .choice-card.selected-wrong {
+            background: #f0b8b8;
+            border-color: #b84b4b;
+        }
+        .error-spot {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 4px;
+            border-radius: 12px;
+            background: #f3e9d2;
+            cursor: pointer;
+            border: 2px solid #cfbea1;
+            font-weight: 600;
+        }
+        .error-spot.correct-click {
+            background: #c3e6b0;
+            border-color: #4f7a4a;
+        }
         @media (max-width: 500px) {
-            .container {
-                padding: 18px 12px;
-            }
-
-            .drop-zone {
-                width: 95%;
-                font-size: 0.95rem;
-            }
-
-            .draggable-card {
-                font-size: 0.9rem;
-                padding: 10px 14px;
-            }
-
-            .signature-group {
-                width: 95%;
-            }
-
-            .drop-zone.sign-zone,
-            .drop-zone.date-zone {
-                width: 150px;
-            }
+            .container { padding: 18px 12px; }
+            .drop-zone { width: 95%; font-size: 0.95rem; }
+            .draggable-card { font-size: 0.9rem; padding: 10px 14px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1><span>📜</span> 互動啓事教室</h1>
-        <div class="subtitle">中一實用文 · 齊齊學格式（先人名後日期）</div>
+<div class="container">
+    <h1><span>📜</span> 互動啓事挑戰</h1>
+    <div class="subtitle">中一實用文 · 加深練習（7關）</div>
 
-        <div class="steps-nav" id="stepNav">
-            <div class="step-dot active" data-step="1">1</div>
-            <div class="step-dot" data-step="2">2</div>
-            <div class="step-dot" data-step="3">3</div>
-            <div class="step-dot" data-step="4">4</div>
-        </div>
-
-        <div id="activityContainer"></div>
-
-        <div id="globalFeedback" class="feedback-message" style="display:none;"></div>
-        <div class="button-group" id="navButtons">
-            <button class="btn" id="resetBtn" style="display:none;">🔄 再試一次</button>
-            <button class="btn primary" id="nextBtn" disabled>下一步 ➡️</button>
-        </div>
+    <div class="steps-nav" id="stepNav">
+        <div class="step-dot active" data-step="1">1</div>
+        <div class="step-dot" data-step="2">2</div>
+        <div class="step-dot" data-step="3">3</div>
+        <div class="step-dot" data-step="4">4</div>
+        <div class="step-dot" data-step="5">5</div>
+        <div class="step-dot" data-step="6">6</div>
+        <div class="step-dot" data-step="7">7</div>
     </div>
 
-    <script>
-        (function() {
-            let currentStep = 1;
-            const totalSteps = 4;
-            let stepCompleted = [false, false, false, false];
+    <div id="activityContainer"></div>
+    <div id="globalFeedback" class="feedback-message" style="display:none;"></div>
+    <div class="button-group" id="navButtons">
+        <button class="btn" id="resetBtn" style="display:none;">🔄 重設呢關</button>
+        <button class="btn primary" id="nextBtn" disabled>下一步 ➡️</button>
+    </div>
+</div>
 
-            const stepNav = document.getElementById('stepNav');
-            const activityContainer = document.getElementById('activityContainer');
-            const globalFeedback = document.getElementById('globalFeedback');
-            const nextBtn = document.getElementById('nextBtn');
-            const resetBtn = document.getElementById('resetBtn');
+<script>
+    (function() {
+        const totalSteps = 7;
+        let currentStep = 1;
+        let stepCompleted = new Array(totalSteps).fill(false);
 
-            function updateStepUI() {
-                const dots = stepNav.querySelectorAll('.step-dot');
-                dots.forEach((dot, idx) => {
-                    const step = idx + 1;
-                    dot.classList.remove('active', 'done');
-                    if (step === currentStep) dot.classList.add('active');
-                    if (stepCompleted[idx]) dot.classList.add('done');
-                });
-                if (stepCompleted[currentStep - 1]) {
-                    nextBtn.disabled = false;
-                    nextBtn.textContent = currentStep === totalSteps ? '🎉 完成' : '下一步 ➡️';
-                } else {
-                    nextBtn.disabled = true;
-                    nextBtn.textContent = '請完成活動 ⬅️';
-                }
-                resetBtn.style.display = (currentStep === 1 || currentStep === 2) ? 'inline-block' : 'none';
+        const stepNav = document.getElementById('stepNav');
+        const activityContainer = document.getElementById('activityContainer');
+        const globalFeedback = document.getElementById('globalFeedback');
+        const nextBtn = document.getElementById('nextBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function updateUI() {
+            const dots = stepNav.querySelectorAll('.step-dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.remove('active', 'done');
+                if (idx+1 === currentStep) dot.classList.add('active');
+                if (stepCompleted[idx]) dot.classList.add('done');
+            });
+            nextBtn.disabled = !stepCompleted[currentStep-1];
+            nextBtn.textContent = currentStep === totalSteps ? '🎉 完成' : '下一步 ➡️';
+            resetBtn.style.display = (currentStep >= 1 && currentStep <= 6) ? 'inline-block' : 'none';
+        }
+
+        function showMessage(msg, type) {
+            globalFeedback.style.display = 'block';
+            globalFeedback.textContent = msg;
+            globalFeedback.className = 'feedback-message ' + (type==='success'?'success':'error');
+            if(type==='success') setTimeout(()=>{ globalFeedback.style.display='none'; }, 3000);
+        }
+
+        function markDone(step) {
+            if(!stepCompleted[step-1]) {
+                stepCompleted[step-1] = true;
+                updateUI();
             }
+        }
 
-            function showGlobalMessage(msg, type) {
-                globalFeedback.style.display = 'block';
-                globalFeedback.textContent = msg;
-                globalFeedback.className = 'feedback-message ' + (type === 'success' ? 'success' : 'error');
-                if (type === 'success') {
-                    setTimeout(() => { globalFeedback.style.display = 'none'; }, 3000);
-                }
-            }
+        function resetStep() {
+            stepCompleted[currentStep-1] = false;
+            globalFeedback.style.display = 'none';
+            renderStep(currentStep);
+            updateUI();
+        }
 
-            function markStepDone(step) {
-                if (!stepCompleted[step - 1]) {
-                    stepCompleted[step - 1] = true;
-                    updateStepUI();
-                }
-            }
-
-            function resetCurrentStep() {
-                stepCompleted[currentStep - 1] = false;
-                globalFeedback.style.display = 'none';
+        function nextStep() {
+            if(!stepCompleted[currentStep-1]) return;
+            if(currentStep < totalSteps) {
+                currentStep++;
                 renderStep(currentStep);
-                updateStepUI();
-            }
-
-            function goToNextStep() {
-                if (!stepCompleted[currentStep - 1]) return;
-                if (currentStep < totalSteps) {
-                    currentStep++;
-                    renderStep(currentStep);
-                    updateStepUI();
-                    globalFeedback.style.display = 'none';
-                } else {
-                    activityContainer.innerHTML = `
-                        <div class="activity-box" style="text-align:center;">
-                            <div style="font-size:3rem;">🎉🏆🎉</div>
-                            <h2 style="color:#4b3a2b; margin:16px 0;">你好叻呀！</h2>
-                            <p style="font-size:1.2rem; color:#5b4636;">你已經學會啟事嘅格式啦！</p>
-                            <p style="font-size:1rem;">標題 · 正文 · 署名(右上) · 日期(左下)</p>
-                            <button class="btn primary" id="restartAllBtn">🔄 從頭玩過</button>
-                        </div>
-                    `;
-                    document.getElementById('restartAllBtn')?.addEventListener('click', restartAll);
-                    nextBtn.style.display = 'none';
-                    resetBtn.style.display = 'none';
-                    globalFeedback.style.display = 'none';
-                }
-            }
-
-            function restartAll() {
-                currentStep = 1;
-                stepCompleted = [false, false, false, false];
-                nextBtn.style.display = 'inline-block';
-                resetBtn.style.display = 'inline-block';
-                globalFeedback.style.display = 'none';
-                renderStep(1);
-                updateStepUI();
-            }
-
-            function renderStep(step) {
-                activityContainer.innerHTML = '';
-                switch (step) {
-                    case 1:
-                        renderStep1();
-                        break;
-                    case 2:
-                        renderStep2();
-                        break;
-                    case 3:
-                        renderStep3();
-                        break;
-                    case 4:
-                        renderStep4();
-                        break;
-                }
-            }
-
-            // ---------- 步骤1：先人名(右上)後日期(左下) ----------
-            function renderStep1() {
+                updateUI();
+                globalFeedback.style.display='none';
+            } else {
                 activityContainer.innerHTML = `
-                    <div class="activity-box">
-                        <div class="instruction"><span class="icon">🧩</span> 將下面嘅卡片，放入啟事嘅正確位置！（先放人名喺右上，再放日期喺左下）</div>
-                        <div class="notice-template" id="template1">
-                            <div class="drop-zone title-zone" data-accept="title" id="zone-title">📌 標題 (居中)</div>
-                            <div class="drop-zone body-zone" data-accept="body" id="zone-body">📝 正文</div>
-                            <div class="signature-group">
-                                <div class="drop-zone sign-zone" data-accept="signature" id="zone-signature">👤 署名 (右上)</div>
-                                <div class="drop-zone date-zone" data-accept="date" id="zone-date">📅 日期 (左下)</div>
-                            </div>
-                        </div>
-                        <div class="card-pool" id="cardPool1">
-                            <div class="draggable-card" data-type="title" id="card-title">尋犬啟事</div>
-                            <div class="draggable-card" data-type="body" id="card-body">本人牧羊狗於十月五日走失……特徵……請致電1234 5678，厚酬。</div>
-                            <div class="draggable-card" data-type="signature" id="card-signature">陳一心</div>
-                            <div class="draggable-card" data-type="date" id="card-date">二零一四年十月六日</div>
+                    <div class="activity-box" style="text-align:center;">
+                        <div style="font-size:3rem;">🏆🎉🏆</div>
+                        <h2>你好犀利呀！</h2>
+                        <p style="font-size:1.2rem;">你已經通過晒7關啟事挑戰！</p>
+                        <button class="btn primary" id="restartAllBtn">🔄 從頭再玩</button>
+                    </div>`;
+                document.getElementById('restartAllBtn')?.addEventListener('click', ()=>{
+                    currentStep=1; stepCompleted.fill(false);
+                    nextBtn.style.display='inline-block'; resetBtn.style.display='inline-block';
+                    renderStep(1); updateUI();
+                });
+                nextBtn.style.display='none'; resetBtn.style.display='none';
+            }
+        }
+
+        function renderStep(step) {
+            activityContainer.innerHTML = '';
+            switch(step) {
+                case 1: step1_Structure(); break;
+                case 2: step2_Title(); break;
+                case 3: step3_BodyOrder(); break;
+                case 4: step4_Details(); break;
+                case 5: step5_SignDate(); break;
+                case 6: step6_Assemble(); break;
+                case 7: step7_FindErrors(); break;
+            }
+        }
+
+        // 步驟1：拖放結構（含干擾項）
+        function step1_Structure() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🧩</span> 將正確嘅卡片拉去啟事嘅位置！（小心有假卡）</div>
+                    <div class="notice-template" id="t1">
+                        <div class="drop-zone title-zone" data-accept="title" id="z-title">📌 標題</div>
+                        <div class="drop-zone body-zone" data-accept="body" id="z-body">📝 正文</div>
+                        <div class="signature-group">
+                            <div class="drop-zone sign-zone" data-accept="signature" id="z-sign">👤 署名 (右上)</div>
+                            <div class="drop-zone date-zone" data-accept="date" id="z-date">📅 日期 (左下)</div>
                         </div>
                     </div>
-                `;
+                    <div class="card-pool" id="pool1">
+                        <div class="draggable-card" data-type="title" data-correct="1">尋犬啟事</div>
+                        <div class="draggable-card" data-type="title" data-correct="0">尋人啟事</div>
+                        <div class="draggable-card" data-type="body" data-correct="1">本人牧羊狗於十月五日走失……特徵……請致電1234 5678，厚酬。</div>
+                        <div class="draggable-card" data-type="body" data-correct="0">本人遺失書包，於學校圖書館，請聯絡。</div>
+                        <div class="draggable-card" data-type="signature" data-correct="1">陳一心</div>
+                        <div class="draggable-card" data-type="signature" data-correct="0">陳大文</div>
+                        <div class="draggable-card" data-type="date" data-correct="1">二零一四年十月六日</div>
+                        <div class="draggable-card" data-type="date" data-correct="0">2025年5月15日</div>
+                    </div>
+                </div>`;
 
-                let selectedCard = null;
-                const cards = document.querySelectorAll('#cardPool1 .draggable-card');
-                const zones = document.querySelectorAll('#template1 .drop-zone');
-                const placedMap = { title: false, body: false, signature: false, date: false };
+            let selectedCard = null;
+            const cards = document.querySelectorAll('#pool1 .draggable-card');
+            const zones = document.querySelectorAll('#t1 .drop-zone');
+            const placed = { title:false, body:false, signature:false, date:false };
 
-                function clearSelection() {
-                    cards.forEach(c => c.classList.remove('selected'));
-                    selectedCard = null;
-                    zones.forEach(z => z.classList.remove('highlight'));
-                }
-
-                cards.forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        if (card.classList.contains('placed')) return;
-                        clearSelection();
-                        card.classList.add('selected');
-                        selectedCard = card;
-                        const type = card.dataset.type;
-                        zones.forEach(z => {
-                            if (z.dataset.accept === type && !z.classList.contains('filled')) {
-                                z.classList.add('highlight');
-                            }
-                        });
-                    });
+            function clearSel() {
+                cards.forEach(c=>c.classList.remove('selected'));
+                selectedCard=null;
+                zones.forEach(z=>z.classList.remove('highlight'));
+            }
+            cards.forEach(card=>{
+                card.addEventListener('click', (e)=>{
+                    e.stopPropagation();
+                    if(card.classList.contains('placed')) return;
+                    clearSel();
+                    card.classList.add('selected');
+                    selectedCard=card;
+                    const type = card.dataset.type;
+                    zones.forEach(z=>{ if(z.dataset.accept===type && !z.classList.contains('filled')) z.classList.add('highlight'); });
                 });
-
-                zones.forEach(zone => {
-                    zone.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        if (!selectedCard) return;
-                        const cardType = selectedCard.dataset.type;
-                        const zoneAccept = zone.dataset.accept;
-                        if (cardType !== zoneAccept || zone.classList.contains('filled')) {
-                            zone.classList.add('wrong-flash');
-                            setTimeout(() => zone.classList.remove('wrong-flash'), 500);
-                            return;
-                        }
-                        zone.textContent = selectedCard.textContent;
-                        zone.classList.add('filled');
-                        selectedCard.classList.add('placed');
-                        placedMap[cardType] = true;
-                        clearSelection();
-                        if (Object.values(placedMap).every(v => v)) {
-                            markStepDone(1);
-                            showGlobalMessage('✅ 全部正確！人名喺右上，日期喺左下，跟足啟事格式。', 'success');
-                        }
-                    });
-                });
-
-                document.addEventListener('click', function cancelHandler(e) {
-                    if (!e.target.closest('.draggable-card') && !e.target.closest('.drop-zone')) {
-                        clearSelection();
+            });
+            zones.forEach(zone=>{
+                zone.addEventListener('click', (e)=>{
+                    e.stopPropagation();
+                    if(!selectedCard) return;
+                    if(selectedCard.dataset.type !== zone.dataset.accept || zone.classList.contains('filled')) return;
+                    if(selectedCard.dataset.correct === '0') {
+                        zone.classList.add('wrong-flash');
+                        setTimeout(()=>zone.classList.remove('wrong-flash'),500);
+                        showMessage('❌ 呢張卡唔啱喎！揀過張正確嘅。','error');
+                        return;
                     }
-                }, { once: false });
-            }
-
-            // ---------- 步骤2：正文要素排序 ----------
-            function renderStep2() {
-                activityContainer.innerHTML = `
-                    <div class="activity-box">
-                        <div class="instruction"><span class="icon">🔢</span> 啟事正文要按次序！點擊句子，再點下方數字格，排出正確順序。</div>
-                        <div class="card-pool" id="sentencePool">
-                            <div class="draggable-card" data-sentence="1" id="s1">📦 遺失咗咩物品？喺邊度、幾時唔見？</div>
-                            <div class="draggable-card" data-sentence="2" id="s2">🔍 物品有咩特徵？（顏色、標誌、內裏物品）</div>
-                            <div class="draggable-card" data-sentence="3" id="s3">📞 如有拾獲，點樣聯絡？有冇酬謝？</div>
-                        </div>
-                        <div class="slot-row" id="slotRow">
-                            <div class="slot" data-slot="1">1️⃣</div>
-                            <div class="slot" data-slot="2">2️⃣</div>
-                            <div class="slot" data-slot="3">3️⃣</div>
-                        </div>
-                        <p style="text-align:center; color:#6b5b3c;">正確次序：1.失物+時地 → 2.特徵 → 3.聯絡方式</p>
-                    </div>
-                `;
-
-                let selectedSentence = null;
-                const sentences = document.querySelectorAll('#sentencePool .draggable-card');
-                const slots = document.querySelectorAll('#slotRow .slot');
-                const placedSentences = { 1: null, 2: null, 3: null };
-
-                function clearSelection2() {
-                    sentences.forEach(s => s.classList.remove('selected'));
-                    selectedSentence = null;
-                    slots.forEach(sl => sl.classList.remove('highlight-slot'));
-                }
-
-                sentences.forEach(s => {
-                    s.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        if (s.classList.contains('placed')) return;
-                        clearSelection2();
-                        s.classList.add('selected');
-                        selectedSentence = s;
-                        slots.forEach(sl => {
-                            if (!sl.classList.contains('filled')) sl.classList.add('highlight-slot');
-                        });
-                    });
-                });
-
-                slots.forEach(slot => {
-                    slot.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        if (!selectedSentence) return;
-                        if (slot.classList.contains('filled')) return;
-                        const slotNum = parseInt(slot.dataset.slot);
-                        slot.textContent = selectedSentence.textContent.substring(0, 2) + '…';
-                        slot.classList.add('filled');
-                        selectedSentence.classList.add('placed');
-                        placedSentences[slotNum] = selectedSentence.dataset.sentence;
-                        clearSelection2();
-                        if (Object.values(placedSentences).every(v => v !== null)) {
-                            if (placedSentences[1] === '1' && placedSentences[2] === '2' && placedSentences[3] === '3') {
-                                markStepDone(2);
-                                showGlobalMessage('✅ 順序正確！跟住呢個次序寫正文就啱喇。', 'success');
-                            } else {
-                                showGlobalMessage('❌ 次序錯咗呀！試下跟 1→2→3 排過。', 'error');
-                            }
-                        }
-                    });
-                });
-
-                document.addEventListener('click', function cancel2(e) {
-                    if (!e.target.closest('.draggable-card') && !e.target.closest('.slot')) {
-                        clearSelection2();
+                    zone.textContent = selectedCard.textContent;
+                    zone.classList.add('filled');
+                    selectedCard.classList.add('placed');
+                    placed[selectedCard.dataset.type] = true;
+                    clearSel();
+                    if(Object.values(placed).every(v=>v)) {
+                        markDone(1);
+                        showMessage('✅ 全部正確！你識分辦真假卡片啦。','success');
                     }
-                }, { once: false });
-            }
+                });
+            });
+            document.addEventListener('click', function clr(e){
+                if(!e.target.closest('.draggable-card') && !e.target.closest('.drop-zone')) clearSel();
+            }, {once:false});
+        }
 
-            // ---------- 步骤3：署名右上、日期左下的格式选择 ----------
-            function renderStep3() {
-                activityContainer.innerHTML = `
-                    <div class="activity-box">
-                        <div class="instruction"><span class="icon">📋</span> 邊個署名同日期嘅擺位先啱？撳一下選擇。</div>
-                        <div id="formatOptions">
-                            <label class="radio-option" id="optA">
-                                <input type="radio" name="format" value="A"> 
-                                <div style="display:flex; flex-direction:column; align-items:flex-start; width:100%;">
-                                    <span style="align-self:flex-end; font-weight:bold;">陳一心</span>
-                                    <span style="align-self:flex-start;">二零一四年十月六日</span>
-                                </div>
-                            </label>
-                            <label class="radio-option" id="optB">
-                                <input type="radio" name="format" value="B">
-                                <div style="display:flex; flex-direction:column; align-items:flex-end; width:100%;">
-                                    <span>二零一四年十月六日</span>
-                                    <span>陳一心</span>
-                                </div>
-                            </label>
-                        </div>
-                        <p style="color:#7b5e3b; margin-top:8px;">💡 提示：<strong>署名放右上，日期放左下</strong>，先名後日期，左右分開。</p>
+        // 步驟2：選擇正確標題
+        function step2_Title() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🏷️</span> 以下情況應該用咩啟事標題？撳一下正確嘅。</div>
+                    <div style="background:#faf5e7; border-radius:16px; padding:14px; margin-bottom:16px;">
+                        <strong>情況：</strong>小明嘅銀包喺商場唔見咗，想請人幫手搵返。
                     </div>
-                `;
-
-                const radioA = document.getElementById('optA');
-                const radioB = document.getElementById('optB');
-                const radioInputs = document.querySelectorAll('input[name="format"]');
-
-                function checkFormat() {
-                    const selected = document.querySelector('input[name="format"]:checked');
-                    if (!selected) return;
-                    if (selected.value === 'A') {
-                        markStepDone(3);
-                        showGlobalMessage('✅ 正確！署名喺右上，日期喺左下，完全符合格式。', 'success');
+                    <div class="choice-grid" id="titleChoices">
+                        <div class="choice-card" data-correct="1">尋物啟事</div>
+                        <div class="choice-card" data-correct="0">尋人啟事</div>
+                        <div class="choice-card" data-correct="0">開業啟事</div>
+                        <div class="choice-card" data-correct="0">更正啟事</div>
+                    </div>
+                </div>`;
+            document.querySelectorAll('#titleChoices .choice-card').forEach(card=>{
+                card.addEventListener('click', function(){
+                    if(this.dataset.correct==='1'){
+                        this.classList.add('selected-correct');
+                        markDone(2);
+                        showMessage('✅ 啱！唔見物品要用「尋物啟事」。','success');
                     } else {
-                        showGlobalMessage('❌ 唔啱喎。記住署名先放右上，然後日期放左下。', 'error');
+                        this.classList.add('selected-wrong');
+                        showMessage('❌ 再諗下，呢個情況係唔見咗物品。','error');
                     }
-                }
-
-                radioInputs.forEach(input => {
-                    input.addEventListener('change', checkFormat);
                 });
-                radioA.addEventListener('click', () => { document.querySelector('#optA input').checked = true;
-                    checkFormat(); });
-                radioB.addEventListener('click', () => { document.querySelector('#optB input').checked = true;
-                    checkFormat(); });
-            }
+            });
+        }
 
-            // ---------- 步骤4：帮李志明写启事 ----------
-            function renderStep4() {
-                activityContainer.innerHTML = `
-                    <div class="activity-box">
-                        <div class="instruction"><span class="icon">🧑‍🎓</span> 李志明唔見咗背包，幫佢揀返正確嘅啟事內容！</div>
-                        <div style="background:#faf5e7; border-radius:18px; padding:14px; margin-bottom:16px;">
-                            <strong>📖 資料重溫：</strong>黑色Nike背包，5月15日上午10點喺圖書館遺失，內有錢包、學生證。電話91234567，酬謝200元。
-                        </div>
-                        <div id="q1" style="margin-bottom:22px;">
-                            <p><strong>1. 標題應該係？</strong></p>
-                            <button class="btn choice-btn" data-correct="true">尋物啟事</button>
-                            <button class="btn choice-btn" data-correct="false">尋人啟事</button>
-                        </div>
-                        <div id="q2" style="margin-bottom:22px;">
-                            <p><strong>2. 正文第一句應該係？</strong></p>
-                            <button class="btn choice-btn" data-correct="true">本人於5月15日上午10時在圖書館遺失Nike背包……</button>
-                            <button class="btn choice-btn" data-correct="false">本人嘅狗唔見咗，請幫忙……</button>
-                        </div>
-                        <div id="q3" style="margin-bottom:22px;">
-                            <p><strong>3. 署名應該寫？</strong></p>
-                            <button class="btn choice-btn" data-correct="true">李志明</button>
-                            <button class="btn choice-btn" data-correct="false">陳一心</button>
-                        </div>
-                        <div id="q4">
-                            <p><strong>4. 日期應該係？</strong></p>
-                            <button class="btn choice-btn" data-correct="true">2025年5月15日</button>
-                            <button class="btn choice-btn" data-correct="false">二零一四年十月六日</button>
-                        </div>
-                        <p id="step4Feedback" style="text-align:center; font-weight:bold; margin-top:12px;"></p>
+        // 步驟3：正文排序（5句）
+        function step3_BodyOrder() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🔢</span> 將以下句子排成正確嘅啟事正文次序（1→5）</div>
+                    <div class="card-pool" id="sentences">
+                        <div class="draggable-card" data-order="1">📦 本人於5月15日早上喺圖書館遺失黑色Nike背包。</div>
+                        <div class="draggable-card" data-order="2">🔍 背包正面有白色勾形標誌，拉鏈有藍色吊飾。</div>
+                        <div class="draggable-card" data-order="3">📋 內有錢包、學生證及約200元現金。</div>
+                        <div class="draggable-card" data-order="4">📞 如有拾獲，請致電91234567聯絡李志明。</div>
+                        <div class="draggable-card" data-order="5">💰 薄酬200元以表謝意。</div>
                     </div>
-                `;
-
-                const correctAnswers = { q1: false, q2: false, q3: false, q4: false };
-                const feedbackEl = document.getElementById('step4Feedback');
-
-                function checkAllDone() {
-                    if (correctAnswers.q1 && correctAnswers.q2 && correctAnswers.q3 && correctAnswers.q4) {
-                        markStepDone(4);
-                        showGlobalMessage('🎉 全部正確！你已經幫李志明完成尋物啟事喇！', 'success');
-                    }
-                }
-
-                document.querySelectorAll('.choice-btn').forEach(btn => {
-                    btn.addEventListener('click', function(e) {
-                        const parentId = this.parentElement.id;
-                        const isCorrect = this.dataset.correct === 'true';
-                        const siblings = this.parentElement.querySelectorAll('.choice-btn');
-                        siblings.forEach(b => b.style.background = '#f9eedb');
-                        if (isCorrect) {
-                            this.style.background = '#c3e6b0';
-                            correctAnswers[parentId] = true;
-                            feedbackEl.textContent = '✅ 呢個啱！';
-                            feedbackEl.style.color = '#1e4a1e';
-                        } else {
-                            this.style.background = '#f0b8b8';
-                            correctAnswers[parentId] = false;
-                            feedbackEl.textContent = '❌ 唔啱，試下另一個。';
-                            feedbackEl.style.color = '#8b2a2a';
-                        }
-                        checkAllDone();
-                    });
-                });
+                    <div class="slot-row" id="slots">
+                        <div class="slot" data-slot="1">1</div><div class="slot" data-slot="2">2</div><div class="slot" data-slot="3">3</div><div class="slot" data-slot="4">4</div><div class="slot" data-slot="5">5</div>
+                    </div>
+                </div>`;
+            let selSent=null;
+            const sents = document.querySelectorAll('#sentences .draggable-card');
+            const slots = document.querySelectorAll('#slots .slot');
+            const filled = {1:null,2:null,3:null,4:null,5:null};
+            function clearS(){
+                sents.forEach(s=>s.classList.remove('selected'));
+                selSent=null;
+                slots.forEach(sl=>sl.classList.remove('highlight-slot'));
             }
+            sents.forEach(s=>{
+                s.addEventListener('click',(e)=>{
+                    e.stopPropagation();
+                    if(s.classList.contains('placed')) return;
+                    clearS(); s.classList.add('selected'); selSent=s;
+                    slots.forEach(sl=>{ if(!sl.classList.contains('filled')) sl.classList.add('highlight-slot'); });
+                });
+            });
+            slots.forEach(slot=>{
+                slot.addEventListener('click',(e)=>{
+                    e.stopPropagation();
+                    if(!selSent || slot.classList.contains('filled')) return;
+                    const sn = parseInt(slot.dataset.slot);
+                    slot.textContent = selSent.textContent.substring(0,8)+'…';
+                    slot.classList.add('filled');
+                    selSent.classList.add('placed');
+                    filled[sn] = selSent.dataset.order;
+                    clearS();
+                    if(Object.values(filled).every(v=>v!==null)){
+                        if(filled[1]==='1'&&filled[2]==='2'&&filled[3]==='3'&&filled[4]==='4'&&filled[5]==='5'){
+                            markDone(3); showMessage('✅ 次序完美！','success');
+                        } else {
+                            showMessage('❌ 次序錯咗，試下跟 失物→特徵→內容→聯絡→酬謝。','error');
+                        }
+                    }
+                });
+            });
+            document.addEventListener('click', function clr(e){
+                if(!e.target.closest('.draggable-card')&&!e.target.closest('.slot')) clearS();
+            },{once:false});
+        }
 
-            nextBtn.addEventListener('click', goToNextStep);
-            resetBtn.addEventListener('click', resetCurrentStep);
+        // 步驟4：選擇正確細節描述
+        function step4_Details() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🔎</span> 邊啲描述適合放喺尋物啟事正文？揀兩個正確嘅。</div>
+                    <div class="choice-grid" id="detailChoices">
+                        <div class="choice-card" data-correct="1">背包係黑色Nike，約40x30厘米</div>
+                        <div class="choice-card" data-correct="0">我尋日同朋友食飯好開心</div>
+                        <div class="choice-card" data-correct="1">內有學生證及現金200元</div>
+                        <div class="choice-card" data-correct="0">天氣好好，適合去公園</div>
+                    </div>
+                    <p id="detailFeedback" style="text-align:center; font-weight:bold;"></p>
+                </div>`;
+            let selectedCorrect = 0;
+            const cards = document.querySelectorAll('#detailChoices .choice-card');
+            const fb = document.getElementById('detailFeedback');
+            cards.forEach(card=>{
+                card.addEventListener('click', function(){
+                    if(this.dataset.correct==='1' && !this.classList.contains('selected-correct')){
+                        this.classList.add('selected-correct');
+                        selectedCorrect++;
+                    } else if(this.dataset.correct==='0'){
+                        this.classList.add('selected-wrong');
+                    }
+                    if(selectedCorrect===2){
+                        markDone(4); showMessage('✅ 啱！啟事要寫物品特徵同內裏物品。','success');
+                    }
+                });
+            });
+        }
 
-            renderStep(1);
-            updateStepUI();
-        })();
-    </script>
+        // 步驟5：署名日期格式
+        function step5_SignDate() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">📋</span> 以下邊個下款格式正確？</div>
+                    <div class="choice-grid" id="signOptions">
+                        <div class="choice-card" data-correct="1" style="display:flex; flex-direction:column; align-items:flex-start;">
+                            <span style="align-self:flex-end;">陳一心</span>
+                            <span style="align-self:flex-start;">二零一四年十月六日</span>
+                        </div>
+                        <div class="choice-card" data-correct="0" style="display:flex; flex-direction:column; align-items:flex-end;">
+                            <span>二零一四年十月六日</span><span>陳一心</span>
+                        </div>
+                        <div class="choice-card" data-correct="0" style="text-align:center;">陳一心<br>二零一四年十月六日</div>
+                    </div>
+                </div>`;
+            document.querySelectorAll('#signOptions .choice-card').forEach(card=>{
+                card.addEventListener('click', function(){
+                    if(this.dataset.correct==='1'){
+                        this.classList.add('selected-correct');
+                        markDone(5); showMessage('✅ 正確！署名右上，日期左下。','success');
+                    } else {
+                        this.classList.add('selected-wrong');
+                        showMessage('❌ 記住：署名喺右上，日期喺左下。','error');
+                    }
+                });
+            });
+        }
+
+        // 步驟6：拼出完整啟事
+        function step6_Assemble() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🧩</span> 幫李志明砌返篇尋物啟事！順序撳正確嘅卡片。</div>
+                    <div class="card-pool" id="assembleCards">
+                        <div class="draggable-card" data-part="title" data-correct="1">尋物啟事</div>
+                        <div class="draggable-card" data-part="body1" data-correct="1">本人於5月15日早上在圖書館遺失黑色Nike背包。</div>
+                        <div class="draggable-card" data-part="body2" data-correct="1">背包有白色勾形標誌，內有錢包及學生證。</div>
+                        <div class="draggable-card" data-part="contact" data-correct="1">如有拾獲請致電91234567，酬謝200元。</div>
+                        <div class="draggable-card" data-part="sign" data-correct="1">李志明</div>
+                        <div class="draggable-card" data-part="date" data-correct="1">2025年5月15日</div>
+                        <div class="draggable-card" data-part="fake" data-correct="0">尋人啟事</div>
+                        <div class="draggable-card" data-part="fake" data-correct="0">我係李志明，好開心。</div>
+                    </div>
+                    <div id="assemblyArea" style="background:#fefcf5; border:2px dashed #bfb08b; border-radius:16px; padding:16px; min-height:120px; display:flex; flex-direction:column; gap:6px;"></div>
+                    <p id="assembleFeedback" style="text-align:center;"></p>
+                </div>`;
+            const area = document.getElementById('assemblyArea');
+            const cards = document.querySelectorAll('#assembleCards .draggable-card');
+            let placedParts = [];
+            cards.forEach(card=>{
+                card.addEventListener('click', function(){
+                    if(card.classList.contains('placed')) return;
+                    if(card.dataset.correct==='0') {
+                        card.classList.add('selected-wrong');
+                        showMessage('❌ 呢張唔關事，唔好揀。','error');
+                        return;
+                    }
+                    card.classList.add('placed');
+                    const clone = card.cloneNode(true);
+                    clone.classList.remove('placed','selected');
+                    clone.style.pointerEvents='none';
+                    area.appendChild(clone);
+                    placedParts.push(card.dataset.part);
+                    if(placedParts.length === 6 &&
+                       placedParts.includes('title') && placedParts.includes('body1') && placedParts.includes('body2') &&
+                       placedParts.includes('contact') && placedParts.includes('sign') && placedParts.includes('date')){
+                        markDone(6);
+                        showMessage('✅ 你成功砌好啟事啦！','success');
+                    }
+                });
+            });
+        }
+
+        // 步驟7：找錯處（只有兩個格式錯誤）
+        function step7_FindErrors() {
+            activityContainer.innerHTML = `
+                <div class="activity-box">
+                    <div class="instruction"><span class="icon">🔍</span> 下面啟事有兩個格式錯誤，撳一下錯嘅地方。</div>
+                    <div class="notice-template" style="align-items:flex-start;">
+                        <div style="width:100%; text-align:center; font-weight:bold; font-size:1.3rem;">尋物啟事</div>
+                        <div style="text-align:left; padding:10px;">本人唔見咗個銀包，喺公園。銀包係藍色，有拉鏈。請打電話98765432。</div>
+                        <div style="display:flex; justify-content:space-between; width:100%;">
+                            <span class="error-spot" data-error="1">2025年5月20日</span>
+                            <span class="error-spot" data-error="0">陳小明</span>
+                        </div>
+                        <div style="width:100%; text-align:right; margin-top:4px;">
+                            <span class="error-spot" data-error="1">陳小明</span>
+                        </div>
+                        <div style="width:100%; text-align:left;">
+                            <span class="error-spot" data-error="0">2025年5月20日</span>
+                        </div>
+                    </div>
+                    <p style="color:#7b5e3b;">提示：日期應該喺左下，署名喺右上，而且唔好重複。</p>
+                    <p id="errorCount" style="text-align:center; font-weight:bold;"></p>
+                </div>`;
+            let errorsFound = 0;
+            const spots = document.querySelectorAll('.error-spot');
+            const counter = document.getElementById('errorCount');
+            spots.forEach(spot=>{
+                spot.addEventListener('click', function(){
+                    if(this.dataset.error==='1' && !this.classList.contains('correct-click')){
+                        this.classList.add('correct-click');
+                        errorsFound++;
+                        counter.textContent = `已搵到 ${errorsFound} 個錯誤`;
+                        if(errorsFound === 2){
+                            markDone(7);
+                            showMessage('🎉 搵晒兩個錯處！日期要喺左下，署名唔好重複。','success');
+                        }
+                    } else if(this.dataset.error==='0' && !this.classList.contains('selected-wrong')){
+                        this.classList.add('selected-wrong');
+                        showMessage('❌ 呢個位冇錯，再睇真啲。','error');
+                    }
+                });
+            });
+        }
+
+        // 事件綁定
+        nextBtn.addEventListener('click', nextStep);
+        resetBtn.addEventListener('click', resetStep);
+        renderStep(1);
+        updateUI();
+    })();
+</script>
 </body>
 </html>
