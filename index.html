@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+  <title>互動學啟事格式 · 中一實用文</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7f4ec;
+      font-family: 'Noto Sans TC', 'PingFang SC', 'Microsoft YaHei', 'Heiti TC', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
+      line-height: 1.5;
+      color: #2e241b;
+    }
+
+    .container {
+      max-width: 750px;
+      width: 100%;
+      background: #fffef9;
+      border-radius: 32px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.05);
+      padding: 28px 24px 32px;
+      border: 1px solid #ddd4c0;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      color: #4b3a2b;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    h1 span {
+      background: #fae5c2;
+      padding: 0 12px;
+      border-radius: 40px;
+      font-size: 1.4rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #7b5e3b;
+      margin-bottom: 24px;
+      border-bottom: 2px dashed #d9c9a8;
+      padding-bottom: 12px;
+    }
+
+    /* 步骤导航 */
+    .steps-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .step-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #e7ddcf;
+      color: #5e4a34;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #cfbea1;
+      transition: all 0.2s;
+      cursor: default;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .step-dot.active {
+      background: #f9c270;
+      border-color: #b47d44;
+      color: #2e241b;
+      transform: scale(1.08);
+      box-shadow: 0 4px 10px rgba(180,120,60,0.3);
+    }
+    .step-dot.done {
+      background: #a7c9a1;
+      border-color: #4f7a4a;
+      color: #1e3a1a;
+      position: relative;
+    }
+    .step-dot.done::after {
+      content: "✓";
+      font-size: 1.4rem;
+      font-weight: bold;
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2d6a2d;
+      border: 2px solid #4f7a4a;
+    }
+
+    /* 活动卡片 */
+    .activity-box {
+      background: #fffbf5;
+      border: 2px solid #e0d3bb;
+      border-radius: 28px;
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+      transition: 0.2s;
+    }
+
+    .instruction {
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: #f3e9d2;
+      padding: 14px 18px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #3f2e1e;
+      border-left: 8px solid #c49a6c;
+    }
+    .instruction .icon {
+      font-size: 2rem;
+    }
+
+    /* 放置区域 (启事模板) */
+    .notice-template {
+      background: #fefcf5;
+      border: 2px dashed #bfb08b;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      min-height: 260px;
+    }
+    .drop-zone {
+      width: 90%;
+      min-height: 58px;
+      border: 3px dotted #b7a17c;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #8b7b62;
+      background: #fffef8;
+      transition: 0.2s;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 1.1rem;
+      background: #fefcf3;
+    }
+    .drop-zone.filled {
+      border-style: solid;
+      background: #f5f0e1;
+      color: #2e241b;
+      font-weight: 700;
+    }
+    .drop-zone.title-zone {
+      font-size: 1.3rem;
+      font-weight: 700;
+      width: 60%;
+    }
+    .drop-zone.body-zone {
+      min-height: 90px;
+      text-align: left;
+      justify-content: flex-start;
+      padding-left: 16px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+    .signature-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 90%;
+      gap: 6px;
+    }
+    .drop-zone.sign-zone, .drop-zone.date-zone {
+      width: 180px;
+      min-height: 48px;
+      font-size: 1rem;
+    }
+    .drop-zone.highlight {
+      border-color: #f0b34b;
+      background: #fff6e5;
+      box-shadow: 0 0 0 4px rgba(240,179,75,0.4);
+    }
+    .drop-zone.correct-flash {
+      border-color: #48944b;
+      background: #e0f7e3;
+      box-shadow: 0 0 0 4px rgba(72,148,75,0.3);
+    }
+    .drop-zone.wrong-flash {
+      border-color: #c94b4b;
+      background: #ffe8e8;
+      box-shadow: 0 0 0 4px rgba(201,75,75,0.3);
+    }
+
+    /* 卡片组 (可拖放或点击) */
+    .card-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 12px 0;
+    }
+    .draggable-card {
+      background: #fff;
+      border: 2px solid #c2b090;
+      border-radius: 20px;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #fef9f2;
+      transition: all 0.15s;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      user-select: none;
+      text-align: center;
+      max-width: 240px;
+    }
+    .draggable-card.selected {
+      border: 3px solid #e5942e;
+      background: #fff2db;
+      transform: scale(1.02);
+      box-shadow: 0 6px 14px rgba(220,130,20,0.25);
+    }
+    .draggable-card.placed {
+      opacity: 0.6;
+      pointer-events: none;
+      background: #e4e4e4;
+      border-color: #aaa;
+      text-decoration: line-through;
+    }
+    .draggable-card:active {
+      transform: scale(0.97);
+    }
+
+    /* 排序槽 */
+    .slot-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 15px 0;
+    }
+    .slot {
+      width: 70px;
+      height: 70px;
+      border: 3px dashed #b7a17c;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      background: #fefcf3;
+      font-weight: bold;
+      color: #ad9b7c;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .slot.filled {
+      background: #f5ebd7;
+      border-style: solid;
+      font-size: 1rem;
+      color: #2e241b;
+      padding: 6px;
+      text-align: center;
+      word-break: break-word;
+    }
+    .slot.highlight-slot {
+      border-color: #e09b2b;
+      background: #fff8e1;
+      box-shadow: 0 0 0 3px rgba(224,155,43,0.4);
+    }
+
+    .feedback-message {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px;
+      border-radius: 20px;
+      margin: 12px 0;
+      transition: 0.2s;
+    }
+    .feedback-message.success {
+      background: #daf1da;
+      color: #1e4a1e;
+      border: 2px solid #6da56d;
+    }
+    .feedback-message.error {
+      background: #ffe0e0;
+      color: #8b2a2a;
+      border: 2px solid #d98080;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: #f3e1c0;
+      border: 2px solid #b28b5c;
+      padding: 14px 26px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #3d2b1a;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      background: #f9eedb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn:hover {
+      background: #f5dbb0;
+      border-color: #8b6a3e;
+    }
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .btn.primary {
+      background: #e0b07d;
+      border-color: #7b5836;
+      color: #2e1e0f;
+      font-weight: 700;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #fff;
+      border: 2px solid #d5c4a5;
+      border-radius: 20px;
+      padding: 14px 18px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: 0.15s;
+      font-size: 1rem;
+    }
+    .radio-option input[type="radio"] {
+      transform: scale(1.8);
+      accent-color: #b87c4b;
+      margin-right: 8px;
+    }
+    .radio-option.selected-option {
+      background: #fef3d6;
+      border-color: #b87c4b;
+      box-shadow: 0 0 0 3px rgba(184,124,75,0.3);
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 18px 12px;
+      }
+      .drop-zone {
+        width: 95%;
+        font-size: 0.95rem;
+      }
+      .draggable-card {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1><span>📜</span> 互動啓事教室</h1>
+  <div class="subtitle">中一實用文 · 齊齊學格式</div>
+
+  <!-- 步骤导航 -->
+  <div class="steps-nav" id="stepNav">
+    <div class="step-dot active" data-step="1">1</div>
+    <div class="step-dot" data-step="2">2</div>
+    <div class="step-dot" data-step="3">3</div>
+    <div class="step-dot" data-step="4">4</div>
+  </div>
+
+  <!-- 动态活动区 -->
+  <div id="activityContainer"></div>
+
+  <!-- 全局反馈和下一步按钮 -->
+  <div id="globalFeedback" class="feedback-message" style="display:none;"></div>
+  <div class="button-group" id="navButtons">
+    <button class="btn" id="resetBtn" style="display:none;">🔄 再試一次</button>
+    <button class="btn primary" id="nextBtn" disabled>下一步 ➡️</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // 状态管理
+    let currentStep = 1;
+    const totalSteps = 4;
+    let stepCompleted = [false, false, false, false]; // 索引0~3对应步骤1~4
+
+    // DOM元素
+    const stepNav = document.getElementById('stepNav');
+    const activityContainer = document.getElementById('activityContainer');
+    const globalFeedback = document.getElementById('globalFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // 辅助函数
+    function updateStepUI() {
+      const dots = stepNav.querySelectorAll('.step-dot');
+      dots.forEach((dot, idx) => {
+        const step = idx + 1;
+        dot.classList.remove('active', 'done');
+        if (step === currentStep) dot.classList.add('active');
+        if (stepCompleted[idx]) dot.classList.add('done');
+      });
+      // 下一步按钮状态
+      if (stepCompleted[currentStep-1]) {
+        nextBtn.disabled = false;
+        nextBtn.textContent = currentStep === totalSteps ? '🎉 完成' : '下一步 ➡️';
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.textContent = '請完成活動 ⬅️';
+      }
+      // 重置按钮显示
+      resetBtn.style.display = (currentStep === 1 || currentStep === 2) ? 'inline-block' : 'none';
+    }
+
+    function showGlobalMessage(msg, type) {
+      globalFeedback.style.display = 'block';
+      globalFeedback.textContent = msg;
+      globalFeedback.className = 'feedback-message ' + (type === 'success' ? 'success' : 'error');
+      if (type === 'success') {
+        setTimeout(() => { globalFeedback.style.display = 'none'; }, 3000);
+      }
+    }
+
+    function markStepDone(step) {
+      if (!stepCompleted[step-1]) {
+        stepCompleted[step-1] = true;
+        updateStepUI();
+      }
+    }
+
+    // 重置当前步骤
+    function resetCurrentStep() {
+      stepCompleted[currentStep-1] = false;
+      globalFeedback.style.display = 'none';
+      renderStep(currentStep);
+      updateStepUI();
+    }
+
+    // 下一步
+    function goToNextStep() {
+      if (!stepCompleted[currentStep-1]) return;
+      if (currentStep < totalSteps) {
+        currentStep++;
+        renderStep(currentStep);
+        updateStepUI();
+        globalFeedback.style.display = 'none';
+      } else {
+        // 全部完成
+        activityContainer.innerHTML = `
+          <div class="activity-box" style="text-align:center;">
+            <div style="font-size:3rem;">🎉🏆🎉</div>
+            <h2 style="color:#4b3a2b; margin:16px 0;">你好叻呀！</h2>
+            <p style="font-size:1.2rem; color:#5b4636;">你已經學會啟事嘅格式啦！</p>
+            <p style="font-size:1rem;">標題 · 正文(失物/時地/特徵/聯絡) · 署名 · 日期</p>
+            <button class="btn primary" id="restartAllBtn">🔄 從頭玩過</button>
+          </div>
+        `;
+        document.getElementById('restartAllBtn')?.addEventListener('click', restartAll);
+        nextBtn.style.display = 'none';
+        resetBtn.style.display = 'none';
+        globalFeedback.style.display = 'none';
+      }
+    }
+
+    function restartAll() {
+      currentStep = 1;
+      stepCompleted = [false, false, false, false];
+      nextBtn.style.display = 'inline-block';
+      resetBtn.style.display = 'inline-block';
+      globalFeedback.style.display = 'none';
+      renderStep(1);
+      updateStepUI();
+    }
+
+    // 渲染各步骤
+    function renderStep(step) {
+      activityContainer.innerHTML = '';
+      switch(step) {
+        case 1: renderStep1(); break;
+        case 2: renderStep2(); break;
+        case 3: renderStep3(); break;
+        case 4: renderStep4(); break;
+      }
+    }
+
+    // ---------- 步骤1：认识启事四个部分 (拖放/点击放置) ----------
+    function renderStep1() {
+      activityContainer.innerHTML = `
+        <div class="activity-box">
+          <div class="instruction"><span class="icon">🧩</span> 將下面嘅卡片，放入啟事嘅正確位置！（先點卡片，再點位置）</div>
+          <div class="notice-template" id="template1">
+            <div class="drop-zone title-zone" data-accept="title" id="zone-title">📌 標題 (居中)</div>
+            <div class="drop-zone body-zone" data-accept="body" id="zone-body">📝 正文</div>
+            <div class="signature-group">
+              <div class="drop-zone sign-zone" data-accept="signature" id="zone-signature">👤 署名</div>
+              <div class="drop-zone date-zone" data-accept="date" id="zone-date">📅 日期</div>
+            </div>
+          </div>
+          <div class="card-pool" id="cardPool1">
+            <div class="draggable-card" data-type="title" id="card-title">尋犬啟事</div>
+            <div class="draggable-card" data-type="body" id="card-body">本人牧羊狗於十月五日走失……特徵……請致電1234 5678，厚酬。</div>
+            <div class="draggable-card" data-type="signature" id="card-signature">陳一心</div>
+            <div class="draggable-card" data-type="date" id="card-date">二零一四年十月六日</div>
+          </div>
+        </div>
+      `;
+
+      // 交互逻辑
+      let selectedCard = null;
+      const cards = document.querySelectorAll('#cardPool1 .draggable-card');
+      const zones = document.querySelectorAll('#template1 .drop-zone');
+      const placedMap = { title: false, body: false, signature: false, date: false };
+
+      function clearSelection() {
+        cards.forEach(c => c.classList.remove('selected'));
+        selectedCard = null;
+        zones.forEach(z => z.classList.remove('highlight'));
+      }
+
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (card.classList.contains('placed')) return;
+          clearSelection();
+          card.classList.add('selected');
+          selectedCard = card;
+          // 高亮对应可接受区域
+          const type = card.dataset.type;
+          zones.forEach(z => {
+            if (z.dataset.accept === type && !z.classList.contains('filled')) {
+              z.classList.add('highlight');
+            }
+          });
+        });
+      });
+
+      zones.forEach(zone => {
+        zone.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!selectedCard) return;
+          const cardType = selectedCard.dataset.type;
+          const zoneAccept = zone.dataset.accept;
+          if (cardType !== zoneAccept || zone.classList.contains('filled')) {
+            zone.classList.add('wrong-flash');
+            setTimeout(() => zone.classList.remove('wrong-flash'), 500);
+            return;
+          }
+          // 放置成功
+          zone.textContent = selectedCard.textContent;
+          zone.classList.add('filled');
+          selectedCard.classList.add('placed');
+          placedMap[cardType] = true;
+          clearSelection();
+          // 检查是否全部放置
+          if (Object.values(placedMap).every(v => v)) {
+            markStepDone(1);
+            showGlobalMessage('✅ 全部位置正確！你做對了標題、正文、署名同日期嘅擺位。', 'success');
+          }
+        });
+      });
+
+      // 点击空白取消选择
+      document.addEventListener('click', function cancelHandler(e) {
+        if (!e.target.closest('.draggable-card') && !e.target.closest('.drop-zone')) {
+          clearSelection();
+        }
+      }, {once: false});
+    }
+
+    // ---------- 步骤2：正文要素排序 (点击句子放入顺序槽) ----------
+    function renderStep2() {
+      activityContainer.innerHTML = `
+        <div class="activity-box">
+          <div class="instruction"><span class="icon">🔢</span> 啟事正文要按次序！點擊句子，再點下方數字格，排出正確順序。</div>
+          <div class="card-pool" id="sentencePool">
+            <div class="draggable-card" data-sentence="1" id="s1">📦 遺失咗咩物品？喺邊度、幾時唔見？</div>
+            <div class="draggable-card" data-sentence="2" id="s2">🔍 物品有咩特徵？（顏色、標誌、內裏物品）</div>
+            <div class="draggable-card" data-sentence="3" id="s3">📞 如有拾獲，點樣聯絡？有冇酬謝？</div>
+          </div>
+          <div class="slot-row" id="slotRow">
+            <div class="slot" data-slot="1">1️⃣</div>
+            <div class="slot" data-slot="2">2️⃣</div>
+            <div class="slot" data-slot="3">3️⃣</div>
+          </div>
+          <p style="text-align:center; color:#6b5b3c;">正確次序：1.失物+時地 → 2.特徵 → 3.聯絡方式</p>
+        </div>
+      `;
+
+      let selectedSentence = null;
+      const sentences = document.querySelectorAll('#sentencePool .draggable-card');
+      const slots = document.querySelectorAll('#slotRow .slot');
+      const placedSentences = {1: null, 2: null, 3: null}; // 记录哪个句子放入了哪个槽
+
+      function clearSelection2() {
+        sentences.forEach(s => s.classList.remove('selected'));
+        selectedSentence = null;
+        slots.forEach(sl => sl.classList.remove('highlight-slot'));
+      }
+
+      sentences.forEach(s => {
+        s.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (s.classList.contains('placed')) return;
+          clearSelection2();
+          s.classList.add('selected');
+          selectedSentence = s;
+          // 高亮空槽
+          slots.forEach(sl => {
+            if (!sl.classList.contains('filled')) sl.classList.add('highlight-slot');
+          });
+        });
+      });
+
+      slots.forEach(slot => {
+        slot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!selectedSentence) return;
+          if (slot.classList.contains('filled')) return;
+          const slotNum = parseInt(slot.dataset.slot);
+          // 放置句子
+          slot.textContent = selectedSentence.textContent.substring(0,2) + '…'; // 简短显示
+          slot.classList.add('filled');
+          selectedSentence.classList.add('placed');
+          placedSentences[slotNum] = selectedSentence.dataset.sentence;
+          clearSelection2();
+          // 检查是否全部放置
+          if (Object.values(placedSentences).every(v => v !== null)) {
+            // 检查顺序: 正确顺序应为 sentence1, sentence2, sentence3 对应槽1,2,3
+            if (placedSentences[1] === '1' && placedSentences[2] === '2' && placedSentences[3] === '3') {
+              markStepDone(2);
+              showGlobalMessage('✅ 順序正確！跟住呢個次序寫正文就啱喇。', 'success');
+            } else {
+              showGlobalMessage('❌ 次序錯咗呀！試下跟 1→2→3 排過。', 'error');
+              // 不标记完成，允许重置
+            }
+          }
+        });
+      });
+
+      document.addEventListener('click', function cancel2(e) {
+        if (!e.target.closest('.draggable-card') && !e.target.closest('.slot')) {
+          clearSelection2();
+        }
+      }, {once: false});
+    }
+
+    // ---------- 步骤3：署名与日期格式 (选择正确格式) ----------
+    function renderStep3() {
+      activityContainer.innerHTML = `
+        <div class="activity-box">
+          <div class="instruction"><span class="icon">📋</span> 邊個署名同日期格式先啱？撳一下選擇。</div>
+          <div id="formatOptions">
+            <label class="radio-option" id="optA">
+              <input type="radio" name="format" value="A"> 
+              <div style="text-align:right; width:100%;">
+                <div>陳一心</div>
+                <div>二零一四年十月六日</div>
+              </div>
+            </label>
+            <label class="radio-option" id="optB">
+              <input type="radio" name="format" value="B">
+              <div style="text-align:left;">
+                <div>二零一四年十月六日</div>
+                <div>陳一心</div>
+              </div>
+            </label>
+          </div>
+          <p style="color:#7b5e3b; margin-top:8px;">💡 提示：署名喺上面，日期喺下面，而且要<strong>靠右對齊</strong>。</p>
+        </div>
+      `;
+
+      const radioA = document.getElementById('optA');
+      const radioB = document.getElementById('optB');
+      const radioInputs = document.querySelectorAll('input[name="format"]');
+
+      function checkFormat() {
+        const selected = document.querySelector('input[name="format"]:checked');
+        if (!selected) return;
+        if (selected.value === 'A') {
+          markStepDone(3);
+          showGlobalMessage('✅ 正確！署名同日期要靠右，而且名喺上、日期喺下。', 'success');
+        } else {
+          showGlobalMessage('❌ 呢個唔啱喎。記住靠右，名上日期下。', 'error');
+        }
+      }
+
+      radioInputs.forEach(input => {
+        input.addEventListener('change', checkFormat);
+      });
+      // 点击整个label也可以选中
+      radioA.addEventListener('click', () => { document.querySelector('#optA input').checked = true; checkFormat(); });
+      radioB.addEventListener('click', () => { document.querySelector('#optB input').checked = true; checkFormat(); });
+    }
+
+    // ---------- 步骤4：帮李志明写启事 (综合选择) ----------
+    function renderStep4() {
+      activityContainer.innerHTML = `
+        <div class="activity-box">
+          <div class="instruction"><span class="icon">🧑‍🎓</span> 李志明唔見咗背包，幫佢揀返正確嘅啟事內容！</div>
+          <div style="background:#faf5e7; border-radius:18px; padding:14px; margin-bottom:16px;">
+            <strong>📖 資料重溫：</strong>黑色Nike背包，5月15日上午10點喺圖書館遺失，內有錢包、學生證。電話91234567，酬謝200元。
+          </div>
+          <div id="q1" style="margin-bottom:22px;">
+            <p><strong>1. 標題應該係？</strong></p>
+            <button class="btn choice-btn" data-correct="true">尋物啟事</button>
+            <button class="btn choice-btn" data-correct="false">尋人啟事</button>
+          </div>
+          <div id="q2" style="margin-bottom:22px;">
+            <p><strong>2. 正文第一句應該係？</strong></p>
+            <button class="btn choice-btn" data-correct="true">本人於5月15日上午10時在圖書館遺失Nike背包……</button>
+            <button class="btn choice-btn" data-correct="false">本人嘅狗唔見咗，請幫忙……</button>
+          </div>
+          <div id="q3" style="margin-bottom:22px;">
+            <p><strong>3. 署名應該寫？</strong></p>
+            <button class="btn choice-btn" data-correct="true">李志明</button>
+            <button class="btn choice-btn" data-correct="false">陳一心</button>
+          </div>
+          <div id="q4">
+            <p><strong>4. 日期應該係？</strong></p>
+            <button class="btn choice-btn" data-correct="true">2025年5月15日</button>
+            <button class="btn choice-btn" data-correct="false">二零一四年十月六日</button>
+          </div>
+          <p id="step4Feedback" style="text-align:center; font-weight:bold; margin-top:12px;"></p>
+        </div>
+      `;
+
+      const correctAnswers = { q1: false, q2: false, q3: false, q4: false };
+      const feedbackEl = document.getElementById('step4Feedback');
+
+      function checkAllDone() {
+        if (correctAnswers.q1 && correctAnswers.q2 && correctAnswers.q3 && correctAnswers.q4) {
+          markStepDone(4);
+          showGlobalMessage('🎉 全部正確！你已經幫李志明完成尋物啟事喇！', 'success');
+        }
+      }
+
+      document.querySelectorAll('.choice-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const parentId = this.parentElement.id; // q1,q2,q3,q4
+          const isCorrect = this.dataset.correct === 'true';
+          // 清除同组其他按钮样式
+          const siblings = this.parentElement.querySelectorAll('.choice-btn');
+          siblings.forEach(b => b.style.background = '#f9eedb');
+          if (isCorrect) {
+            this.style.background = '#c3e6b0';
+            correctAnswers[parentId] = true;
+            feedbackEl.textContent = '✅ 呢個啱！';
+            feedbackEl.style.color = '#1e4a1e';
+          } else {
+            this.style.background = '#f0b8b8';
+            correctAnswers[parentId] = false;
+            feedbackEl.textContent = '❌ 唔啱，試下另一個。';
+            feedbackEl.style.color = '#8b2a2a';
+          }
+          checkAllDone();
+        });
+      });
+    }
+
+    // 事件绑定
+    nextBtn.addEventListener('click', goToNextStep);
+    resetBtn.addEventListener('click', resetCurrentStep);
+
+    // 初始化
+    renderStep(1);
+    updateStepUI();
+
+    // 清理全局点击监听（避免重复绑定）
+    window.cleanupListeners = function() {
+      // 简单处理，重新渲染时会替换innerHTML，监听器自动移除
+    };
+  })();
+</script>
+</body>
+</html>
